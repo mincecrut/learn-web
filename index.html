@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Нур — исламский сайт</title>
+  <meta name="description" content="Пять столпов ислама, Коран на арабском с русским переводом, время намаза и дуа на каждый день.">
+  <meta name="theme-color" content="#0d1914">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph: карточка ссылки в мессенджерах и соцсетях.
+       После публикации добавьте og:url и og:image с полными адресами вашего сайта. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Нур">
+  <meta property="og:title" content="Нур — исламский сайт">
+  <meta property="og:description" content="Пять столпов ислама, Коран на арабском с русским переводом, время намаза и дуа на каждый день.">
+
+  <!-- Применяем сохранённую тему до отрисовки страницы, чтобы не было мигания -->
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    } catch (e) {}
+  </script>
+
+  <!-- Шрифты: Amiri для арабского, Lora для заголовков, Source Sans 3 для текста -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Ссылка для клавиатуры и скринридеров: сразу к основному содержимому -->
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <!-- ===== 1. ШАПКА С НАВИГАЦИЕЙ ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="Нур — на главную">
+        <span class="logo-ar" lang="ar" dir="rtl">نور</span>
+        <span class="logo-ru">Нур</span>
+      </a>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#about">О сайте</a></li>
+          <li><a href="#pillars">Столпы ислама</a></li>
+          <li><a href="#quran">Коран</a></li>
+          <li><a href="#prayer">Время намаза</a></li>
+          <li><a href="#dua">Дуа</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Переключатель светлой/тёмной темы -->
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
+          <span id="theme-icon" aria-hidden="true">☀</span>
+        </button>
+        <!-- Бургер для мобильного меню -->
+        <button id="burger" class="icon-btn burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ===== 2. ГЛАВНЫЙ БЛОК: ПРИВЕТСТВИЕ ===== -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="hero-arabic" lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</p>
+          <h1>Мир вам и милость Аллаха</h1>
+          <p class="hero-lead">Добро пожаловать на сайт для тех, кто хочет лучше узнать основы ислама: столпы веры, время намаза и повседневные дуа.</p>
+          <p class="datetime" aria-live="off">
+            <span id="current-date">—</span>
+            <span id="current-time" class="time">—</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. О САЙТЕ ===== -->
+    <section id="about" class="section">
+      <div class="container narrow">
+        <h2>О сайте</h2>
+        <p>Этот сайт создан как простое учебное пособие: здесь собраны основы ислама, расписание намазов для популярных городов и краткие дуа на каждый день.</p>
+        <p>Мы указываем источник каждого аята и хадиса — суру и номер аята, сборник хадисов и номер. Переводы Корана даны как смысловые и не заменяют толкований (тафсиров). По вопросам религии обращайтесь к знающим людям и в ближайшую мечеть.</p>
+      </div>
+    </section>
+
+    <!-- ===== 4. ПЯТЬ СТОЛПОВ ИСЛАМА ===== -->
+    <section id="pillars" class="section section-alt">
+      <div class="container">
+        <h2>Пять столпов ислама</h2>
+        <p class="section-lead">Пророк Мухаммад ﷺ сказал, что ислам построен на пяти основах (Аль-Бухари, № 8; Муслим, № 16).</p>
+
+        <div class="cards">
+          <article class="card">
+            <p class="card-ar" lang="ar" dir="rtl">الشَّهَادَة</p>
+            <h3>Шахада</h3>
+            <p>Свидетельство веры: нет божества, кроме Аллаха, и Мухаммад — Его посланник. С него человек входит в ислам.</p>
+          </article>
+
+          <article class="card">
+            <p class="card-ar" lang="ar" dir="rtl">الصَّلَاة</p>
+            <h3>Салят (намаз)</h3>
+            <p>Пять обязательных молитв в течение суток: на рассвете, в полдень, после полудня, на закате и ночью.</p>
+          </article>
+
+          <article class="card">
+            <p class="card-ar" lang="ar" dir="rtl">الزَّكَاة</p>
+            <h3>Закят</h3>
+            <p>Обязательная милостыня с накоплений, достигших установленного предела (нисаба). Помогает нуждающимся и очищает имущество.</p>
+          </article>
+
+          <article class="card">
+            <p class="card-ar" lang="ar" dir="rtl">الصَّوْم</p>
+            <h3>Саум (пост)</h3>
+            <p>Пост в месяц Рамадан: от рассвета до заката верующий воздерживается от еды, питья и супружеской близости.</p>
+          </article>
+
+          <article class="card">
+            <p class="card-ar" lang="ar" dir="rtl">الْحَجّ</p>
+            <h3>Хадж</h3>
+            <p>Паломничество в Мекку, обязательное один раз в жизни для тех, у кого есть физическая и материальная возможность.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4а. КОРАН ===== -->
+    <section id="quran" class="section section-quran">
+      <div class="container">
+        <h2>Коран</h2>
+        <p class="section-lead">114 сур. Выберите суру, чтобы прочитать её аяты на арабском языке с русским переводом.</p>
+        <noscript><p class="note">Для чтения Корана нужен включённый JavaScript. Включите его в настройках браузера и обновите страницу.</p></noscript>
+
+        <!-- Вид 1: список сур с поиском -->
+        <div id="surah-list-view">
+          <div class="quran-search">
+            <label for="surah-search">Поиск суры</label>
+            <input type="search" id="surah-search" placeholder="Название или номер, например: Бакара или 2" autocomplete="off">
+          </div>
+
+          <!-- Индикатор загрузки / сообщение об ошибке -->
+          <div id="surah-status" class="loader-box" role="status"></div>
+
+          <ul id="surah-list" class="surah-list"></ul>
+        </div>
+
+        <!-- Вид 2: чтение выбранной суры -->
+        <div id="surah-reader" class="surah-reader" hidden>
+          <button type="button" id="back-to-list" class="btn btn-outline">Назад к списку сур</button>
+
+          <header class="reader-head">
+            <h3 id="reader-title" tabindex="-1"></h3>
+            <p id="reader-meta" class="reader-meta"></p>
+            <!-- Басмала показывается отдельной строкой; текст берётся из загруженных данных -->
+            <p id="reader-bismillah" class="arabic arabic-xl" lang="ar" dir="rtl" hidden></p>
+          </header>
+
+          <div id="ayah-status" class="loader-box" role="status"></div>
+          <ol id="ayah-list" class="ayah-list"></ol>
+
+          <!-- Предыдущая / следующая сура -->
+          <nav class="surah-nav" aria-label="Переход между сурами">
+            <button type="button" id="prev-surah" class="btn btn-outline">Предыдущая сура</button>
+            <button type="button" id="next-surah" class="btn btn-outline">Следующая сура</button>
+          </nav>
+        </div>
+
+        <!-- Источники текста -->
+        <p class="note quran-credits">
+          Арабский текст и русский перевод хранятся на сайте: арабский текст — проект <a href="https://tanzil.net" target="_blank" rel="noopener">Tanzil</a> (Tanzil Quran Text, лицензия CC BY 3.0),
+          перевод смыслов — Эльмир Кулиев (издание Tanzil).
+          Перевод передаёт лишь смысл аятов и не заменяет тафсир.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== 5. ВРЕМЯ НАМАЗА ===== -->
+    <section id="prayer" class="section">
+      <div class="container narrow">
+        <h2>Время намаза</h2>
+        <p class="section-lead">Выберите город — время загрузится на сегодняшний день.</p>
+        <noscript><p class="note">Для показа времени намаза нужен включённый JavaScript. Включите его в настройках браузера и обновите страницу.</p></noscript>
+
+        <div class="prayer-controls">
+          <label for="city-select">Город</label>
+          <select id="city-select"></select>
+        </div>
+
+        <!-- Ближайший намаз и дата по хиджре -->
+        <div class="prayer-summary">
+          <p id="prayer-next" class="prayer-next"></p>
+          <p id="prayer-hijri" class="prayer-hijri"></p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="prayer-table">
+            <caption id="prayer-caption" class="sr-only">Время намаза</caption>
+            <thead>
+              <tr><th scope="col">Намаз</th><th scope="col">Время</th></tr>
+            </thead>
+            <tbody id="prayer-body">
+              <!-- Строки добавляются из script.js -->
+            </tbody>
+          </table>
+        </div>
+        <p id="prayer-status" class="status" role="status"></p>
+        <p class="note">Время для городов Казахстана предоставлено сервисом <a href="https://namaztimes.kz" target="_blank" rel="noopener">Namaztimes.kz</a> (для Аср указано время «екінті», принятое по ханафитскому мазхабу). Для остальных городов время рассчитывает сервис <a href="https://aladhan.com" target="_blank" rel="noopener">Aladhan</a>. Время может отличаться от расписания вашей мечети на несколько минут — ориентируйтесь на местное расписание.</p>
+      </div>
+    </section>
+
+    <!-- ===== 6. ДУА НА КАЖДЫЙ ДЕНЬ ===== -->
+    <section id="dua" class="section section-alt">
+      <div class="container">
+        <h2>Дуа на каждый день</h2>
+        <p class="section-lead">Короткие обращения к Аллаху на разные случаи жизни. Транскрипция — приблизительная.</p>
+        <p class="note">Тексты приведены для ознакомления. Перед заучиванием сверяйте их с проверенными изданиями и уточняйте у знающего человека.</p>
+
+        <div class="dua-list">
+
+          <article class="dua">
+            <h3>Перед едой</h3>
+            <p class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ</p>
+            <p class="translit">Би-сми-ллях.</p>
+            <p class="translation">С именем Аллаха.</p>
+            <p class="source">Аль-Бухари, № 5376; Муслим, № 2022</p>
+          </article>
+
+          <article class="dua">
+            <h3>После еды</h3>
+            <p class="arabic" lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ</p>
+            <p class="translit">Аль-хамду ли-лляхи ллязи ат‘ама-на ва сака-на ва джа‘ала-на муслимин.</p>
+            <p class="translation">Хвала Аллаху, Который накормил нас, напоил и сделал нас мусульманами.</p>
+            <p class="source">Абу Дауд, № 3850; ат-Тирмизи, № 3457</p>
+          </article>
+
+          <article class="dua">
+            <h3>Пробуждение ото сна</h3>
+            <p class="arabic" lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</p>
+            <p class="translit">Аль-хамду ли-лляхи ллязи ахъя-на ба‘да ма амата-на ва илейхи ннушур.</p>
+            <p class="translation">Хвала Аллаху, Который оживил нас после того, как умертвил, и к Нему — воскрешение.</p>
+            <p class="source">Аль-Бухари, № 6312</p>
+          </article>
+
+          <article class="dua">
+            <h3>Перед сном</h3>
+            <p class="arabic" lang="ar" dir="rtl">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</p>
+            <p class="translit">Би-смика, Аллахумма, амуту ва ахъя.</p>
+            <p class="translation">С Твоим именем, о Аллах, умираю и оживаю.</p>
+            <p class="source">Аль-Бухари, № 6324</p>
+          </article>
+
+          <article class="dua">
+            <h3>При выходе из дома</h3>
+            <p class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</p>
+            <p class="translit">Би-сми-лляхи, таваккяльту ‘аля-лляхи, ва ля хауля ва ля куввата илля би-лляхи.</p>
+            <p class="translation">С именем Аллаха, уповаю на Аллаха; нет мощи и силы ни у кого, кроме Аллаха.</p>
+            <p class="source">Абу Дауд, № 5095; ат-Тирмизи, № 3426</p>
+          </article>
+
+          <article class="dua">
+            <h3>За родителей</h3>
+            <p class="arabic" lang="ar" dir="rtl">رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</p>
+            <p class="translit">Рабби-рхам-хума кама раббаяни сагыра.</p>
+            <p class="translation">Господи, помилуй их так, как они растили меня в детстве.</p>
+            <p class="source">Коран, сура Аль-Исра, 17:24</p>
+          </article>
+
+          <article class="dua">
+            <h3>О знаниях</h3>
+            <p class="arabic" lang="ar" dir="rtl">رَبِّ زِدْنِي عِلْمًا</p>
+            <p class="translit">Рабби, зидни ‘ильма.</p>
+            <p class="translation">Господи, приумножь мои знания.</p>
+            <p class="source">Коран, сура Та Ха, 20:114</p>
+          </article>
+
+          <article class="dua">
+            <h3>О благе в этом мире и в Будущей жизни</h3>
+            <p class="arabic" lang="ar" dir="rtl">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</p>
+            <p class="translit">Раббана, атина фи ддунья хасанатан ва фи ль-ахырати хасанатан ва кына ‘азаба ннар.</p>
+            <p class="translation">Господи наш, даруй нам благо в этом мире и благо в Будущей жизни и защити нас от мучений Огня.</p>
+            <p class="source">Коран, сура Аль-Бакара, 2:201</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. КОНТАКТЫ ===== -->
+    <section id="contact" class="section">
+      <div class="container narrow">
+        <h2>Контакты</h2>
+        <p class="section-lead">Вопросы и предложения — в нашем чате в Telegram.</p>
+        <a class="btn" href="https://t.me/+FMoQneScjHZkZjhi" target="_blank" rel="noopener">Перейти в чат</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 8. ПОДВАЛ ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p lang="ar" dir="rtl" class="footer-ar">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ</p>
+      <p>Да примет Аллах от нас и от вас.</p>
+      <p class="copy">© <span id="year">2026</span> Нур. Учебный проект.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

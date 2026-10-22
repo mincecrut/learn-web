@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Страница не найдена — Нур</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    /* Стили встроены, потому что 404.html открывается по любому адресу и относительные пути могут не работать */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+      color: #ece6d3;
+      background: #0d1914;
+    }
+    h1 { margin: 0 0 0.5rem; font-family: Georgia, serif; font-size: 2.2rem; color: #d2ad5a; }
+    p { margin: 0 0 1.5rem; color: #a9b5a8; }
+    a {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #1a1608;
+      background: #d2ad5a;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Страница не найдена</h1>
+    <p>Возможно, ссылка устарела или в адресе есть ошибка.</p>
+    <a id="home-link" href="/">Вернуться на главную</a>
+  </main>
+
+  <script>
+    /* Если сайт опубликован как проект на GitHub Pages (адрес вида user.github.io/репозиторий/),
+       главная страница лежит в папке репозитория. Для личного сайта user.github.io
+       поменяйте значение на true. */
+    var isUserSite = false;
+    var parts = location.pathname.split("/");
+    if (location.hostname.endsWith(".github.io") && !isUserSite && parts[1]) {
+      document.getElementById("home-link").href = "/" + parts[1] + "/";
+    }
+  </script>
+</body>
+</html>

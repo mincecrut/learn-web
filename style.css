@@ -1,0 +1,490 @@
+/* ===== Переменные темы ===== */
+/* Тёмная тема — по умолчанию */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0d1914;
+  --surface: #142620;
+  --surface-2: #1a3128;
+  --text: #ece6d3;
+  --muted: #a9b5a8;
+  --green: #48b08a;
+  --gold: #d2ad5a;
+  --on-gold: #1a1608;
+  --border: rgba(210, 173, 90, 0.22);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --star-opacity: 0.14;
+}
+
+/* Светлая тема */
+:root[data-theme="light"] {
+  --bg: #f5f0e1;
+  --surface: #fffdf6;
+  --surface-2: #ece5cf;
+  --text: #14281f;
+  --muted: #52645a;
+  --green: #1a6e4d;
+  --gold: #7a5d17;
+  --on-gold: #fffdf6;
+  --border: rgba(138, 106, 31, 0.3);
+  --shadow: 0 10px 28px rgba(20, 40, 31, 0.12);
+  --star-opacity: 0.2;
+}
+
+/* ===== Базовые стили ===== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  font-family: "Lora", Georgia, serif;
+  line-height: 1.25;
+  margin: 0 0 0.6em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--gold); }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1em; }
+
+a { color: var(--green); }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+.narrow { width: min(760px, 100% - 2.5rem); margin-inline: auto; }
+
+/* Скрыть визуально, но оставить для скринридеров */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Арабский текст */
+.arabic,
+.hero-arabic,
+.card-ar,
+.logo-ar,
+.footer-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+}
+.arabic { font-size: 1.7rem; line-height: 2; color: var(--gold); margin-bottom: 0.4em; }
+
+/* Ссылка «Перейти к содержимому» для клавиатуры и скринридеров */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  color: var(--on-gold);
+  background: var(--gold);
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+main:focus { outline: none; }
+
+/* Сообщение для браузеров без JavaScript */
+noscript .note { padding: 0.9rem 1.1rem; background: var(--surface); border-left: 4px solid var(--gold); border-radius: 8px; }
+
+/* ===== Шапка ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text);
+}
+.logo-ar { font-size: 2rem; color: var(--gold); line-height: 1; }
+.logo-ru { font-family: "Lora", serif; font-weight: 700; font-size: 1.3rem; }
+
+.site-nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0.8rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.site-nav a:hover { background: var(--surface-2); color: var(--gold); }
+.site-nav a[aria-current="location"] { color: var(--gold); box-shadow: inset 0 -2px 0 var(--gold); }
+
+.header-actions { display: flex; gap: 0.5rem; }
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.icon-btn:hover { background: var(--surface-2); }
+
+/* Бургер скрыт на больших экранах */
+.burger { display: none; flex-direction: column; justify-content: center; gap: 5px; }
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--gold);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Главный блок ===== */
+.hero {
+  position: relative;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  /* Узор из восьмиконечных звёзд — единственный декоративный элемент страницы */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23c9a24b' stroke-width='1'%3E%3Crect x='22' y='22' width='36' height='36'/%3E%3Crect x='22' y='22' width='36' height='36' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  isolation: isolate;
+}
+/* Полупрозрачная вуаль, чтобы узор был еле заметен */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg);
+  opacity: calc(1 - var(--star-opacity));
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.hero-arabic { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--gold); margin-bottom: 0.2em; }
+.hero-lead { color: var(--muted); max-width: 52ch; }
+
+.datetime {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  align-items: baseline;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+}
+.datetime .time {
+  color: var(--gold);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.translation { font-size: 1.1rem; }
+.source { color: var(--muted); font-size: 0.95rem; }
+
+/* ===== Кнопки ===== */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--on-gold);
+  background: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: filter 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.btn:hover { filter: brightness(1.1); }
+.btn-outline { background: transparent; color: var(--gold); }
+.btn-outline:hover { background: var(--gold); color: var(--on-gold); filter: none; }
+
+/* ===== Секции ===== */
+.section { padding: clamp(3rem, 7vw, 5rem) 0; scroll-margin-top: 64px; }
+.section-alt { background: var(--surface-2); }
+.section-lead { color: var(--muted); max-width: 60ch; margin-bottom: 2rem; }
+#home { scroll-margin-top: 64px; }
+
+/* ===== Карточки столпов ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.2rem;
+}
+.card {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--gold); }
+.card-ar { font-size: 2.2rem; color: var(--gold); margin-bottom: 0.2em; line-height: 1.4; }
+.card p:last-child { margin-bottom: 0; color: var(--muted); }
+
+/* ===== Коран ===== */
+.section-quran { border-block: 1px solid var(--border); }
+
+.quran-search { display: grid; gap: 0.4rem; max-width: 520px; margin-bottom: 1.2rem; }
+.quran-search label { font-weight: 600; }
+.quran-search input { width: 100%; }
+
+/* Индикатор загрузки и сообщения об ошибке */
+.loader-box { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin: 1rem 0; color: var(--muted); }
+.loader-box:empty { display: none; }
+.loader-box.error {
+  padding: 0.9rem 1.1rem;
+  color: var(--text);
+  background: var(--surface);
+  border-left: 4px solid #e0685a;
+  border-radius: 8px;
+}
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Список сур */
+.surah-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.8rem;
+}
+.surah-item button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.surah-item button:hover { border-color: var(--gold); background: var(--surface-2); }
+.surah-num {
+  min-width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.surah-names { display: grid; line-height: 1.3; }
+.surah-ru { font-weight: 600; }
+.surah-count { font-size: 0.88rem; color: var(--muted); }
+.surah-ar { font-family: "Amiri", "Scheherazade New", serif; font-size: 1.5rem; color: var(--gold); line-height: 1.3; }
+
+/* Чтение суры */
+.reader-head { text-align: center; margin: 1.5rem 0 1rem; }
+.reader-head h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--gold); margin-bottom: 0.2em; }
+.reader-meta { color: var(--muted); }
+.arabic-xl { font-size: clamp(1.8rem, 5vw, 2.4rem); text-align: center; margin-top: 0.6em; }
+
+.ayah-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.ayah { display: grid; gap: 0.6rem; padding: 1.4rem; }
+.ayah + .ayah { border-top: 1px solid var(--border); }
+.ayah-num {
+  justify-self: start;
+  min-width: 2.2rem;
+  padding: 0.1rem 0.6rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--on-gold);
+  background: var(--gold);
+  border-radius: 999px;
+}
+.ayah .arabic { font-size: clamp(1.7rem, 4.6vw, 2.3rem); line-height: 2.1; margin: 0; text-align: right; }
+.ayah .translation { margin: 0; }
+
+.surah-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem; margin-top: 1.5rem; }
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; filter: none; }
+.quran-credits { margin-top: 2rem; }
+
+/* ===== Время намаза ===== */
+.prayer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+.prayer-controls label { font-weight: 600; }
+
+select,
+input,
+textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  transition: border-color 0.2s ease;
+}
+select { min-width: 220px; }
+input:hover, textarea:hover, select:hover { border-color: var(--gold); }
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.prayer-table { width: 100%; border-collapse: collapse; }
+.prayer-table th,
+.prayer-table td { padding: 0.9rem 1.2rem; text-align: left; }
+.prayer-table thead th { color: var(--gold); border-bottom: 1px solid var(--border); }
+.prayer-table tbody tr + tr td,
+.prayer-table tbody tr + tr th { border-top: 1px solid var(--border); }
+.prayer-table tbody th { font-weight: 600; }
+.prayer-table td { font-variant-numeric: tabular-nums; font-size: 1.15rem; }
+/* Ближайший намаз */
+.prayer-table tr.next { background: var(--surface-2); }
+.prayer-table tr.next th::after {
+  content: "ближайший";
+  margin-left: 0.7rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--on-gold);
+  background: var(--gold);
+  border-radius: 999px;
+}
+
+.prayer-summary { display: grid; gap: 0.2rem; margin-bottom: 1.2rem; }
+.prayer-summary p { margin: 0; }
+.prayer-next { font-weight: 600; color: var(--gold); }
+.prayer-hijri { color: var(--muted); }
+.prayer-table tr.muted th,
+.prayer-table tr.muted td { color: var(--muted); font-weight: 400; }
+
+.status { margin-top: 0.8rem; color: var(--muted); min-height: 1.5em; }
+.note { font-size: 0.95rem; color: var(--muted); }
+
+/* ===== Дуа ===== */
+.dua-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+.dua {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.dua h3 { color: var(--green); }
+.dua .arabic { font-size: 1.6rem; }
+.translit { font-style: italic; color: var(--muted); margin-bottom: 0.5em; }
+.dua .source { margin-bottom: 0; }
+
+/* ===== Подвал ===== */
+.site-footer {
+  padding: 2.5rem 0;
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.footer-ar { font-size: 1.7rem; color: var(--gold); margin-bottom: 0.2em; }
+.copy { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+/* ===== Адаптивность ===== */
+/* Мобильные: меню превращается в выпадающий список */
+@media (max-width: 960px) {
+  .burger { display: flex; }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    display: none;
+  }
+  .site-nav.open { display: block; }
+  .site-nav ul { flex-direction: column; padding: 0.6rem 1.25rem 1rem; }
+  .site-nav a { padding: 0.8rem 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .dua-list { grid-template-columns: 1fr; }
+  .surah-list { grid-template-columns: 1fr; }
+  .ayah { padding: 1.1rem; }
+  select { width: 100%; }
+}
+
+/* Уважение к настройке «уменьшить анимацию» */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+  .spinner { animation-duration: 3s; }
+}
